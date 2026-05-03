@@ -279,9 +279,9 @@ contract MyContract {
 }
 
 // CORRECT
-import { SepoliaConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
+import { ZamaEthereumConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
 
-contract MyContract is SepoliaConfig {
+contract MyContract is ZamaEthereumConfig {
     function compute() public { ... }
 }
 ```
@@ -297,7 +297,7 @@ contract MyContract is SepoliaConfig {
 address constant GATEWAY = 0x1234...;
 
 // CORRECT — inherit from config which sets addresses correctly
-contract MyContract is SepoliaConfig { ... }
+contract MyContract is ZamaEthereumConfig { ... }
 ```
 
 ---
@@ -394,7 +394,7 @@ Amounts are confidential. Do not use ERC-20 indexers or event parsers with ERC-7
 contract MyToken is ERC7984 { ... }
 
 // CORRECT
-contract MyToken is SepoliaConfig, ERC7984 { ... }
+contract MyToken is ZamaEthereumConfig, ERC7984 { ... }
 ```
 
 ---
@@ -410,7 +410,7 @@ Before submitting any FHEVM contract, verify:
 - [ ] No arithmetic on `euint256`
 - [ ] No encrypted divisor in `FHE.div` or `FHE.rem`
 - [ ] All finalize functions have replay protection
-- [ ] Contract inherits from `SepoliaConfig` or `EthereumConfig`
+- [ ] Contract inherits from `ZamaEthereumConfig`
 - [ ] No hardcoded gateway/KMS addresses
 - [ ] Frontend uses `await buffer.encrypt()` before sending handles
 - [ ] `checkSignatures` handle array order matches `publicDecrypt` call order

@@ -137,7 +137,7 @@ import "@fhevm/solidity/lib/FHE.sol";
 import { EthereumConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
 
 // For Sepolia testnet, use SepoliaConfig instead:
-// import { SepoliaConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
+// import { ZamaEthereumConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
 
 contract MyContract is EthereumConfig {
     // your contract code here
@@ -178,7 +178,7 @@ contract MyContract {
 }
 
 // CORRECT
-contract MyContract is SepoliaConfig {
+contract MyContract is ZamaEthereumConfig {
     function doSomething() public { ... }
 }
 ```

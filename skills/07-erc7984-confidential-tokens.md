@@ -46,11 +46,11 @@ npm install @fhevm/solidity
 pragma solidity ^0.8.27;
 
 import { FHE, externalEuint64, euint64 } from "@fhevm/solidity/lib/FHE.sol";
-import { SepoliaConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
+import { ZamaEthereumConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
 import { ERC7984 } from "@openzeppelin/confidential-contracts/token/ERC7984/ERC7984.sol";
 import { Ownable2Step, Ownable } from "@openzeppelin/contracts/access/Ownable2Step.sol";
 
-contract ConfidentialToken is SepoliaConfig, ERC7984, Ownable2Step {
+contract ConfidentialToken is ZamaEthereumConfig, ERC7984, Ownable2Step {
     constructor(
         address owner,
         string memory name_,
@@ -152,10 +152,10 @@ Use `ERC7984ERC20Wrapper` to wrap an existing ERC-20 into a confidential ERC-798
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import { SepoliaConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
+import { ZamaEthereumConfig } from "@fhevm/solidity/config/ZamaConfig.sol";
 import { ERC7984ERC20Wrapper } from "@openzeppelin/confidential-contracts/token/ERC7984/extensions/ERC7984ERC20Wrapper.sol";
 
-contract WrappedConfidentialToken is SepoliaConfig, ERC7984ERC20Wrapper {
+contract WrappedConfidentialToken is ZamaEthereumConfig, ERC7984ERC20Wrapper {
     constructor(
         address underlyingToken,  // the ERC-20 to wrap
         string memory name_,
@@ -205,7 +205,7 @@ OpenZeppelin provides several ERC-7984 extensions:
 ```solidity
 import { ERC7984Freezable } from "@openzeppelin/confidential-contracts/token/ERC7984/extensions/ERC7984Freezable.sol";
 
-contract MyToken is SepoliaConfig, ERC7984Freezable, Ownable {
+contract MyToken is ZamaEthereumConfig, ERC7984Freezable, Ownable {
     // freezer role can call freeze(address) and unfreeze(address)
 }
 ```
@@ -262,7 +262,7 @@ because amounts are confidential. Do not rely on transfer event parsing from ERC
 contract MyToken is ERC7984 { ... }
 
 // CORRECT
-contract MyToken is SepoliaConfig, ERC7984 { ... }
+contract MyToken is ZamaEthereumConfig, ERC7984 { ... }
 ```
 
 ### Using decimals: 18 with euint64

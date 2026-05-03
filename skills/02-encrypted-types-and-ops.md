@@ -31,7 +31,7 @@
 ## Declaring State Variables
 
 ```solidity
-contract MyContract is SepoliaConfig {
+contract MyContract is ZamaEthereumConfig {
     euint64 private totalSupply;
     ebool private isActive;
     eaddress private encryptedOwner;

@@ -305,3 +305,41 @@ Use v18, v20, or v22.
 ```bash
 node -v  # must be even-numbered
 ```
+
+
+---
+
+## Discovered During Testing — Real Fixes
+
+### ACL Grant Required Before makePubliclyDecryptable
+
+Always call FHE.allow for the submitting address inside requestReveal before calling makePubliclyDecryptable. Without it, userDecryptEuint throws "User is not authorized to decrypt handle".
+
+```solidity
+FHE.allow(p.yesVotes, owner);
+FHE.allow(p.noVotes, owner);
+FHE.makePubliclyDecryptable(p.yesVotes);
+FHE.makePubliclyDecryptable(p.noVotes);
+```
+
+### Mock Bypass for Local Hardhat Testing
+
+KMSVerifier rejects empty proofs even in mock mode. Use a chainid guard:
+
+```solidity
+if (block.chainid != 31337) {
+    FHE.checkSignatures(handles, encoded, decryptionProof);
+}
+```
+
+### Correct Decrypt Functions for This Plugin Version
+
+```typescript
+import { FhevmType } from "@fhevm/hardhat-plugin";
+
+// Public decryption
+const clear = await fhevm.publicDecryptEuint(FhevmType.euint64, handle);
+
+// User decryption
+const clear = await fhevm.userDecryptEuint(FhevmType.euint64, handle, contractAddress, signer);
+```
