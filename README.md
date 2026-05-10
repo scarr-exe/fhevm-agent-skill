@@ -23,4 +23,4 @@ ACL grants in place, no common pitfalls.
 
 ## Tested with
 
-Claude Code — see demo video:
+Claude Code — see demo video: https://youtu.be/48Llc79KDqU
